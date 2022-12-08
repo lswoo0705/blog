@@ -1,5 +1,5 @@
 package com.sparta.blog.service;
-
+// service
 import com.sparta.blog.dto.PostRequestDto;
 import com.sparta.blog.entity.Post;
 import com.sparta.blog.repository.PostRepository;

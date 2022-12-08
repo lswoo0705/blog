@@ -1,5 +1,5 @@
 package com.sparta.blog.dto;
-
+// dto
 import lombok.Getter;
 
 @Getter

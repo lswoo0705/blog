@@ -1,5 +1,5 @@
 package com.sparta.blog.repository;
-
+// repository
 import com.sparta.blog.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 

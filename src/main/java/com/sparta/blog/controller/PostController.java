@@ -1,6 +1,6 @@
 package com.sparta.blog.controller;
 // 게시글 페이지를 반환하는 기능
-
+// controller
 import com.sparta.blog.dto.PostRequestDto;
 import com.sparta.blog.entity.Post;
 import com.sparta.blog.service.PostService;

@@ -1,5 +1,5 @@
 package com.sparta.blog.entity;
-
+// entity
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.blog.dto.PostRequestDto;
 import lombok.Getter;
