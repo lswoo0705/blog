@@ -25,4 +25,11 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
     public List<Post> getPosts() {
         return postRepository.findAllByOrderByCreatedAtDesc();
     }
+
+    public Long update(Long id, PostRequestDto requestDto) {
+        Post post = postRepository.findById(id).orElseThrow(    // id값에 해당하는 게시글이 있는지 확인
+                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")   // 예외처리
+        );
+
+    }
 }

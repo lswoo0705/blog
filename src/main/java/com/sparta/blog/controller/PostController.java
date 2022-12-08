@@ -5,10 +5,7 @@ import com.sparta.blog.dto.PostRequestDto;
 import com.sparta.blog.entity.Post;
 import com.sparta.blog.service.PostService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -27,5 +24,10 @@ public class PostController {
     @GetMapping("/api/posts")
     public List<Post> getPosts() {
         return postService.getPosts();
+    }
+
+    @PutMapping("/api/posts/{id}")  // id값을 받아와서 그 게시글을 수정.   어떤 내용을 수정할건지 받아와야함.
+    public Long updatePost(@PathVariable Long id,@RequestBody PostRequestDto requestDto) {
+        return postService.update(id, requestDto);
     }
 }
