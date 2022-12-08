@@ -14,6 +14,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostController {
 
+    Post post = new Post();
+
     private final PostService postService;  // 포스트서비스와 연결
 
     @PostMapping("/api/posts")
@@ -27,7 +29,7 @@ public class PostController {
     }
 
     @PutMapping("/api/posts/{id}")  // id값을 받아와서 그 게시글을 수정.   어떤 내용을 수정할건지 받아와야함.
-    public Long updatePost(@PathVariable Long id,@RequestBody PostRequestDto requestDto) {
+    public Long updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
         return postService.update(id, requestDto);
     }
 }
