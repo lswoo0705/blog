@@ -34,4 +34,10 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
         post.update(requestDto);    // 게시글이 있다면 업데이트
         return post.getId();
     }
+
+    @org.springframework.transaction.annotation.Transactional
+    public Long deletePost(Long id) {
+        postRepository.deleteById(id);
+        return id;
+    }
 }
