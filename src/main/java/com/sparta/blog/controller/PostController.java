@@ -28,6 +28,11 @@ public class PostController {
         return postService.getPosts();
     }
 
+    @GetMapping("/api/posts/{id}")
+    public Long getSelectedPosts(@PathVariable Long id) {
+        return postService.selectPosts(id);
+    }
+
     @PutMapping("/api/posts/{id}")  // id값을 받아와서 그 게시글을 수정.   어떤 내용을 수정할건지 받아와야함.
     public Long updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
         return postService.update(id, requestDto);

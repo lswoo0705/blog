@@ -26,6 +26,14 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
         return postRepository.findAllByOrderByCreatedAtDesc();
     }
 
+    @org.springframework.transaction.annotation.Transactional(readOnly = true)
+    public Long selectPosts(Long id) {
+        Post post = postRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
+        );
+        return post.getId();
+    }
+
     @org.springframework.transaction.annotation.Transactional
     public Long update(Long id, PostRequestDto requestDto) {
         Post post = postRepository.findById(id).orElseThrow(    // id값에 해당하는 게시글이 있는지 확인
