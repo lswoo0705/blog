@@ -5,10 +5,10 @@
 
 0. 전체 API
 
-![스크린샷 2022-12-09 오전 9.56.57.png](..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fx_%2Fg04flwwj03x_q_lw2t5lvf0m0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_2DwWM6%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202022-12-09%20%EC%98%A4%EC%A0%84%209.56.57.png)
+![스크린샷 2022-12-09 오전 10 14 46](https://user-images.githubusercontent.com/117060896/206600674-ef6b2745-adf0-49a1-a767-9012ed9ba053.png)
 
 1. 아래의 요구사항을 기반으로 Use Case 그려보기
-![스크린샷 2022-12-09 오전 9.25.06.png](..%2F..%2F..%2FLibrary%2FGroup%20Containers%2Fgroup.com.apple.notes%2FAccounts%2F1839FD08-DBA0-49E9-89D7-B0E039FC8633%2FMedia%2F4340B918-14D1-4A9E-8AB2-BB10149D3E12%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202022-12-09%20%EC%98%A4%EC%A0%84%209.25.06.png)
+   ![스크린샷 2022-12-09 오전 9 25 06](https://user-images.githubusercontent.com/117060896/206600831-dfa6a591-dd37-4c99-9071-d8f02b9bd856.png)
 
 
 2. 전체 게시글 목록 조회 API
