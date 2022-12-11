@@ -2,6 +2,7 @@ package com.sparta.blog.controller;
 // 게시글 페이지를 반환하는 기능
 // controller
 import com.sparta.blog.dto.PostRequestDto;
+import com.sparta.blog.dto.PostResponseDto;
 import com.sparta.blog.entity.Post;
 import com.sparta.blog.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -24,13 +25,13 @@ public class PostController {
     }
 
     @GetMapping("/api/posts")
-    public List<Post> getPosts() {
+    public List<PostResponseDto> getPosts() {
         return postService.getPosts();
     }
 
     @GetMapping("/api/posts/{id}")
-    public Long getSelectedPosts(@PathVariable Long id) {
-        return postService.selectPosts(id);
+    public PostResponseDto getSelectedPosts(@PathVariable Long id) {
+        return postService.getSelectedPosts(id);
     }
 
     @PutMapping("/api/posts/{id}")  // id값을 받아와서 그 게시글을 수정.   어떤 내용을 수정할건지 받아와야함.

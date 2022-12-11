@@ -25,7 +25,6 @@ public class Post extends Timestamped {
     private String contents;
 
     @Column(nullable = false)
-    @JsonIgnore
     private int password;
 
     public Post(PostRequestDto requestDto) {

@@ -2,12 +2,14 @@ package com.sparta.blog.service;
 // service
 import com.sparta.blog.dto.PostGetPassword;
 import com.sparta.blog.dto.PostRequestDto;
+import com.sparta.blog.dto.PostResponseDto;
 import com.sparta.blog.entity.Post;
 import com.sparta.blog.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,16 +25,21 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
     }
 
     @org.springframework.transaction.annotation.Transactional(readOnly = true)
-    public List<Post> getPosts() {
-        return postRepository.findAllByOrderByCreatedAtDesc();
+    public List<PostResponseDto> getPosts() {
+        List<Post> posts = postRepository.findAllByOrderByCreatedAtDesc();
+        List<PostResponseDto> postResponseDtos = new ArrayList<>();
+        for (Post post : posts) {
+            postResponseDtos.add(new PostResponseDto(post.getId(), post.getPostTitle(), post.getUsername(), post.getContents(), post.getCreatedAt()));
+        }
+        return postResponseDtos;
     }
 
-    @org.springframework.transaction.annotation.Transactional(readOnly = true)
-    public Long selectPosts(Long id) {
+    @org.springframework.transaction.annotation.Transactional
+    public PostResponseDto getSelectedPosts(Long id) {
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
-        return post.getId();
+        return new PostResponseDto(post.getId(), post.getPostTitle(), post.getUsername(), post.getContents(), post.getCreatedAt());    // 패스워드 뺀 dto
     }
 
     @org.springframework.transaction.annotation.Transactional
