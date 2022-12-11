@@ -41,19 +41,25 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")   // 예외처리
         );
         PostGetPassword postPassword = new PostGetPassword(post.getPassword());
-        if (postPassword.getPassword() == (requestDto.getPassword())) {
+        if (postPassword.getPassword() == requestDto.getPassword()) {
             post.update(requestDto);    // 게시글이 있다면 업데이트
         } else {
-            System.out.println(post);
-            System.out.println(postPassword);
             return "비밀번호가 일치하지 않습니다.";
         }
         return "수정 완료";
     }
 
     @org.springframework.transaction.annotation.Transactional
-    public Long deletePost(Long id) {
-        postRepository.deleteById(id);
-        return id;
+    public String deletePost(Long id, PostRequestDto requestDto) {
+        Post post = postRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
+        );
+        PostGetPassword postPassword = new PostGetPassword(post.getPassword());
+        if (postPassword.getPassword() == requestDto.getPassword()) {
+            postRepository.deleteById(id);
+        } else {
+            return "비밀번호가 일치하지 않습니다.";
+        }
+        return "삭제 완료";
     }
 }
