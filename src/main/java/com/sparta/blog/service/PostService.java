@@ -1,6 +1,5 @@
 package com.sparta.blog.service;
 // service
-import com.sparta.blog.dto.PostGetPassword;
 import com.sparta.blog.dto.PostRequestDto;
 import com.sparta.blog.dto.PostResponseDto;
 import com.sparta.blog.entity.Post;
@@ -47,8 +46,7 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
         Post post = postRepository.findById(id).orElseThrow(    // id값에 해당하는 게시글이 있는지 확인
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")   // 예외처리
         );
-        PostGetPassword postPassword = new PostGetPassword(post.getPassword());
-        if (postPassword.getPassword() == requestDto.getPassword()) {
+        if (post.getPassword() == requestDto.getPassword()) {
             post.update(requestDto);    // 게시글이 있다면 업데이트
         } else {
             return "비밀번호가 일치하지 않습니다.";
@@ -61,8 +59,7 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
-        PostGetPassword postPassword = new PostGetPassword(post.getPassword());
-        if (postPassword.getPassword() == requestDto.getPassword()) {
+        if (post.getPassword() == requestDto.getPassword()) {
             postRepository.deleteById(id);
         } else {
             return "비밀번호가 일치하지 않습니다.";
