@@ -1,5 +1,6 @@
 package com.sparta.blog.service;
 // service
+import com.sparta.blog.dto.PostGetPassword;
 import com.sparta.blog.dto.PostRequestDto;
 import com.sparta.blog.entity.Post;
 import com.sparta.blog.repository.PostRepository;
@@ -35,12 +36,19 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
     }
 
     @org.springframework.transaction.annotation.Transactional
-    public Long update(Long id, PostRequestDto requestDto) {
+    public String update(Long id, PostRequestDto requestDto) {
         Post post = postRepository.findById(id).orElseThrow(    // id값에 해당하는 게시글이 있는지 확인
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")   // 예외처리
         );
-        post.update(requestDto);    // 게시글이 있다면 업데이트
-        return post.getId();
+        PostGetPassword postPassword = new PostGetPassword(post.getPassword());
+        if (postPassword.getPassword() == (requestDto.getPassword())) {
+            post.update(requestDto);    // 게시글이 있다면 업데이트
+        } else {
+            System.out.println(post);
+            System.out.println(postPassword);
+            return "비밀번호가 일치하지 않습니다.";
+        }
+        return "수정 완료";
     }
 
     @org.springframework.transaction.annotation.Transactional
