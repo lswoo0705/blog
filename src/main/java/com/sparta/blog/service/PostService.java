@@ -30,7 +30,7 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
         List<Post> posts = postRepository.findAllByOrderByCreatedAtDesc();
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
         for (Post post : posts) {
-            postResponseDtos.add(new PostResponseDto(post.getId(), post.getPostTitle(), post.getUsername(), post.getContents(), post.getCreatedAt()));
+            postResponseDtos.add(new PostResponseDto(post.getId(), post.getPostTitle(), user.getUsername(), post.getContents(), post.getCreatedAt()));
         }
         return postResponseDtos;
     }
