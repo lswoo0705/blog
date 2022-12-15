@@ -16,6 +16,7 @@ import java.util.List;
 public class PostService {  // 데이터베이스와 연결을 위해 PostRepository를 사용할 수 있도록 추가
     private final PostRepository postRepository;
 
+    // 게시글 작성하기
     @Transactional
     public Post createPost(PostRequestDto requestDto) {
         Post post = new Post(requestDto);
@@ -23,6 +24,7 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
         return post;
     }
 
+    // 전체 게시글 조회하기
     @org.springframework.transaction.annotation.Transactional(readOnly = true)
     public List<PostResponseDto> getPosts() {
         List<Post> posts = postRepository.findAllByOrderByCreatedAtDesc();
@@ -33,6 +35,7 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
         return postResponseDtos;
     }
 
+    // id로 선택한 게시글 조회하기
     @org.springframework.transaction.annotation.Transactional
     public PostResponseDto getSelectedPosts(Long id) {
         Post post = postRepository.findById(id).orElseThrow(
@@ -41,6 +44,7 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
         return new PostResponseDto(post.getId(), post.getPostTitle(), post.getUsername(), post.getContents(), post.getCreatedAt());    // 패스워드 뺀 dto
     }
 
+    // 수정하기
     @org.springframework.transaction.annotation.Transactional
     public String update(Long id, PostRequestDto requestDto) {
         Post post = postRepository.findById(id).orElseThrow(    // id값에 해당하는 게시글이 있는지 확인
@@ -54,6 +58,7 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
         return "수정 완료";
     }
 
+    // 삭제하기
     @org.springframework.transaction.annotation.Transactional
     public String deletePost(Long id, PostRequestDto requestDto) {
         Post post = postRepository.findById(id).orElseThrow(
