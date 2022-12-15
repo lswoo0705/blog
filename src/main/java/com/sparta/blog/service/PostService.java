@@ -30,7 +30,7 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
         List<Post> posts = postRepository.findAllByOrderByCreatedAtDesc();
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
         for (Post post : posts) {
-            postResponseDtos.add(new PostResponseDto(post.getId(), post.getPostTitle(), user.getUsername(), post.getContents(), post.getCreatedAt()));
+            postResponseDtos.add(new PostResponseDto(post.getId(), post.getPostTitle(), /*user.getUsername(),*/ post.getContents(), post.getCreatedAt()));
         }
         return postResponseDtos;
     }
@@ -41,7 +41,7 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
-        return new PostResponseDto(post.getId(), post.getPostTitle(), post.getUsername(), post.getContents(), post.getCreatedAt());    // 패스워드 뺀 dto
+        return new PostResponseDto(post.getId(), post.getPostTitle(), /*post.getUsername(),*/ post.getContents(), post.getCreatedAt());    // 패스워드 뺀 dto
     }
 
     // 수정하기
@@ -50,11 +50,12 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
         Post post = postRepository.findById(id).orElseThrow(    // id값에 해당하는 게시글이 있는지 확인
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")   // 예외처리
         );
-        if (post.getPassword() == requestDto.getPassword()) {
-            post.update(requestDto);    // 게시글이 있다면 업데이트
-        } else {
-            return "비밀번호가 일치하지 않습니다.";
-        }
+//        if (post.getPassword() == requestDto.getPassword()) {
+//            post.update(requestDto);    // 게시글이 있다면 업데이트
+//        } else {
+//            return "비밀번호가 일치하지 않습니다.";
+//        }
+        post.update(requestDto);    // 게시글이 있다면 업데이트
         return "수정 완료";
     }
 
@@ -64,11 +65,12 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
-        if (post.getPassword() == requestDto.getPassword()) {
-            postRepository.deleteById(id);
-        } else {
-            return "비밀번호가 일치하지 않습니다.";
-        }
+//        if (post.getPassword() == requestDto.getPassword()) {
+//            postRepository.deleteById(id);
+//        } else {
+//            return "비밀번호가 일치하지 않습니다.";
+//        }
+        postRepository.deleteById(id);
         return "삭제 완료";
     }
 }
