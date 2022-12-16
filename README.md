@@ -45,11 +45,11 @@
 
 0. 전체 API
 
-사진이 들어갈 곳
+<img width="732" alt="스크린샷 2022-12-16 오후 2 33 05" src="https://user-images.githubusercontent.com/117060896/208029337-aef20dc5-7d73-4192-9792-10b58534aab7.png">
 
 1. ERD
 
-사진이 들어갈 곳
+<img width="484" alt="스크린샷 2022-12-16 오후 2 34 58" src="https://user-images.githubusercontent.com/117060896/208029536-4624c5d8-4b7f-4d71-b14a-de1ee21b980b.png">
 
 3. 기능 구현
     1. 전체 게시글 목록 조회 API
