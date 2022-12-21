@@ -3,7 +3,9 @@ package com.sparta.blog.service;
 import com.sparta.blog.dto.PostRequestDto;
 import com.sparta.blog.dto.PostResponseDto;
 import com.sparta.blog.entity.Post;
+import com.sparta.blog.jwt.JwtUtil;
 import com.sparta.blog.repository.PostRepository;
+import com.sparta.blog.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostService {  // 데이터베이스와 연결을 위해 PostRepository를 사용할 수 있도록 추가
     private final PostRepository postRepository;
+    private final UserRepository userRepository;
+    private final JwtUtil jwtUtil;
 
     // 게시글 작성하기
     @Transactional
@@ -63,7 +67,7 @@ public class PostService {  // 데이터베이스와 연결을 위해 PostReposi
     @org.springframework.transaction.annotation.Transactional
     public String deletePost(Long id, PostRequestDto requestDto) {
         Post post = postRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
+                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")   // 토큰 검증 만들어야함
         );
 //        if (post.getPassword() == requestDto.getPassword()) {
 //            postRepository.deleteById(id);

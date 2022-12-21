@@ -1,6 +1,5 @@
 package com.sparta.blog.entity;
-// entity
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.sparta.blog.dto.PostRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,10 +20,21 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private String contents;
 
-    public Post(PostRequestDto requestDto) {
+    @Column(nullable = false)
+    private String username;
 
+    @Column(nullable = false)
+    private Long userId;
+
+    public Post(PostRequestDto requestDto, String username, Long userId) {
         this.postTitle = requestDto.getPostTitle();
         this.contents = requestDto.getContents();
+        this.username = username;
+        this.userId = userId;
+    }
+
+    public Post(PostRequestDto requestDto) {
+
     }
 
     public void update(PostRequestDto requestDto) {
